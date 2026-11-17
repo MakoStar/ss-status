@@ -1,0 +1,25 @@
+name: Clear Deployments
+
+on:
+  workflow_dispatch:
+
+permissions:
+  deployments: write
+
+concurrency:
+  group: ss-status-clear
+  cancel-in-progress: false
+
+jobs:
+  clear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all deployments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ids=$(gh api --paginate "repos/$GITHUB_REPOSITORY/deployments?per_page=100" --jq '.[].id')
+          for id in $ids; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/deployments/$id/statuses" -f state=inactive > /dev/null || true
+            gh api -X DELETE "repos/$GITHUB_REPOSITORY/deployments/$id" > /dev/null || true
+          done
