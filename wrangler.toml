@@ -1,0 +1,14 @@
+name = "ss-status"
+main = "worker/index.ts"
+compatibility_date = "2026-11-16"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[[kv_namespaces]]
+binding = "STATUS_KV"
+id = "ab2bd359c1744a6191b9536f37130ebd"
+
+[triggers]
+crons = ["*/10 * * * *"]

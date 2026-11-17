@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro'
+import Header from '../components/Header.astro'
+import Tabs from '../components/Tabs.astro'
+import StatusPanel from '../components/StatusPanel.astro'
+import NoticesPanel from '../components/NoticesPanel.astro'
+import Footer from '../components/Footer.astro'
+
+const DATA_BASE = 'https://raw.githubusercontent.com/MakoStar/ss-status/data'
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Stella Sora Server Status',
+  description: 'Live server status, versions, game servers and announcements for all Stella Sora regions',
+  distribution: ['status.json', 'notices.json', 'agents.json'].map(f => ({
+    '@type': 'DataDownload',
+    encodingFormat: 'application/json',
+    contentUrl: `${DATA_BASE}/${f}`,
+  })),
+}
+---
+
+<Base title="Stella Sora · Server Status">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <Header updatedIso="" />
+
+    <div class="tabs-bar">
+      <Tabs />
+    </div>
+
+    <StatusPanel rows={[]} down={0} game="-" />
+
+    <NoticesPanel count={0} />
+
+    <Footer />
+  </div>
+
+  <script>
+    import { load } from '../status.ts'
+    import { initStarfield } from '../starfield.ts'
+    initStarfield()
+    load()
+  </script>
+</Base>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  count: number
+}
+
+const { count } = Astro.props
+---
+
+<section class="panel" data-panel="notices" hidden>
+  <div class="board">
+    <div class="board-head">
+      <span class="board-icon">✦</span>
+      <span class="board-title" id="board-title">Announcements</span>
+      <span class="board-count" id="board-count"><!-- snap:count -->{count}<!-- /snap:count --></span>
+      <div class="board-regions" id="notice-filter"></div>
+    </div>
+    <div class="board-tabs" id="notice-tabs"></div>
+    <div class="board-body">
+      <div class="notice-list" id="notice-list"></div>
+      <div class="notice-content" id="notice-content"></div>
+    </div>
+  </div>
+</section>

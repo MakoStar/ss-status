@@ -1,0 +1,42 @@
+---
+interface Props {
+  rows: [string, any][]
+  down: number
+  game: string
+}
+
+const { rows, down, game } = Astro.props
+---
+
+<section class="panel" data-panel="status">
+  <div class="badges" id="badges"><!-- snap:badges -->
+    <span class="badge">regions <b>{rows.length}</b></span>
+    <span class="badge">maintenance <b>{down}</b></span>
+    <span class="badge">game <b>{game}</b></span>
+  <!-- /snap:badges --></div>
+  <div class="card">
+    <div class="card-title">Regions <span>live server status</span></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Region</th><th>Status</th><th>Launcher</th>
+          <th>Client</th><th>Game</th><th>Patch</th><th>Hotfix</th>
+        </tr>
+      </thead>
+      <tbody id="status-rows"><!-- snap:rows -->
+        {rows.map(([region, d]) => (
+          <tr>
+            <td class="region">{region}</td>
+            <td class="state {d.status === 1 ? 'down' : 'up'}">{d.status === 1 ? 'Maintenance' : 'Online'}</td>
+            <td><code>{d.launcherVersion ? `v${d.launcherVersion}` : '-'}</code></td>
+            <td><code>{d.clientVersion ? `v${d.clientVersion}` : '-'}</code></td>
+            <td><code>{d.gameVersion ? `v${d.gameVersion}` : '-'}</code></td>
+            <td><code>{d.patchVersion ? `v${d.patchVersion}` : '-'}</code></td>
+            <td><code>{d.hotfixVersion ? `p${d.hotfixVersion}` : '-'}</code></td>
+          </tr>
+        ))}
+      <!-- /snap:rows --></tbody>
+    </table>
+  </div>
+  <div id="messages"></div>
+</section>

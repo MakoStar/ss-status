@@ -1,0 +1,17 @@
+---
+interface Props {
+  updatedIso: string
+}
+
+const { updatedIso } = Astro.props
+---
+
+<header class="head">
+  <div class="head-top">
+    <h1>Server Status</h1>
+    <div class="head-actions">
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+  <div class="sub" id="updated"><!-- snap:updated -->{updatedIso}<!-- /snap:updated --></div>
+</header>

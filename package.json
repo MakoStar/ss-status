@@ -1,0 +1,27 @@
+{
+  "name": "ss-status",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy",
+    "worker:tail": "wrangler tail"
+  },
+  "dependencies": {
+    "astro": "^5.14.1",
+    "protobufjs": "^8.0.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@cloudflare/workers-types": "^5.20261116.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.163.0"
+  }
+}
