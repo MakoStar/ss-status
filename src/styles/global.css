@@ -182,6 +182,7 @@ td code {
 .board-head {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 13px 20px;
   background: linear-gradient(100deg, var(--board-head-a), var(--board-head-b));
@@ -196,7 +197,7 @@ td code {
   background: rgba(255,255,255,0.22);
   font-size: 11px; font-family: var(--mono);
 }
-.board-regions { display: flex; gap: 6px; margin-left: auto; }
+.board-regions { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
 .board-regions button {
   padding: 4px 12px; border: 1px solid rgba(255,255,255,0.4);
   border-radius: 999px; background: rgba(255,255,255,0.12);
@@ -290,6 +291,8 @@ td code {
   .card { padding: 4px 12px 12px; overflow-x: auto; }
   table { min-width: 620px; }
   .tab { padding: 8px 14px; }
+  .board-head { padding: 12px 14px; }
+  .board-regions { width: 100%; margin-left: 0; }
   .board-body { grid-template-columns: 1fr; }
   .notice-list, .notice-content { height: auto; max-height: 480px; }
 }
